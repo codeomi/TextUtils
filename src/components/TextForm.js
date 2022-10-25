@@ -10,28 +10,43 @@ export default function TextForm(props) {
 
     //click to change the text to upppercase
     const handleUpClick = ()=>{
-        console.log("omkar");
-        setText("you have clicked on button")
+        let newText = text.toUpperCase()
+        setText(newText)
+    }
+
+    const handleSmallClick = () =>{
+        let newText = text.toLowerCase()
+        setText(newText)
     }
 
 
+
     const handleOnChange = (event)=>{
-        console.log("on\chanfe");
+        console.log("onChange");
         setText(event.target.value)
     }
 
 
 
     return (
-        <div>
+        <>
+        <div className='container'>
             <h1>{props.heading}</h1>
             <div className="mb-3">
                 <div className="container">
-                <textarea className="form-control" id="myBox" placeholder={text} onChange = {handleOnChange} rows="8"></textarea>
+                <textarea className="form-control" id="myBox" value= {text}  onChange = {handleOnChange} rows="4"></textarea>
                 </div>
-                <div className="btn btn-primary my-3" onClick={handleUpClick} >Convert to UpperCase</div>
+                <div className="btn btn-primary my-3 m-3"  onClick={handleUpClick} >Convert to UpperCase</div>
+                <div className="btn btn-primary my-3" onClick={handleSmallClick}>Convert to SmallerCase</div>
             </div>
         </div>
+        <div className="container m-2">
+            <h1>Your text summary</h1>
+            <p>Your words: <span>{text.split(" ").length}</span></p>
+            <p>Your characters: <span>{text.length}</span>
+            </p>
+        </div>
+        </>
     )
 }
 
