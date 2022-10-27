@@ -1,4 +1,5 @@
 import './Appa.css';
+// import About from './components/About';
 import NavBar from './components/NavBar';
 import TextArea from './components/TextForm';
 
@@ -11,6 +12,7 @@ function App() {
 
       <div className="container my-3" >
       <TextArea heading = "Enter the text to analyse"/>
+      {/* <About/> */}
       </div>
     </>
   );
