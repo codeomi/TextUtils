@@ -29,6 +29,13 @@ export default function TextForm(props) {
         setText(event.target.value)
     }
 
+    const handleCopyClick=()=>{
+        let text=  document.getElementById("myBox")
+        text.select()
+        text.setSelectionRange(0, 9999)
+        navigator.clipboard.writtenText(text.value)
+    }
+
 
     return (
         <>
@@ -39,8 +46,9 @@ export default function TextForm(props) {
                 <textarea className="form-control" id="myBox" value= {text}  onChange = {handleOnChange} rows="8"></textarea>
                 </div>
                 <div className="btn btn-primary my-3 m-3"  onClick={handleUpClick} >Convert to UpperCase</div>
-                <div className="btn btn-primary my-3" onClick={handleSmallClick}>Convert to SmallerCase</div>
+                <div className="btn btn-primary my-3" onClick= {handleSmallClick}>Convert to SmallerCase</div>
                 <div className="btn btn-primary my-3 m-3" onClick={handleClearClick}>Clear</div>
+                <div className="btn btn-primary my-3 m-3" onClick={handleCopyClick}>Copy Text</div>
             </div>
         </div>
         <div className="container m-2">
