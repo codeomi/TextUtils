@@ -11,16 +11,21 @@ export default function TextForm(props) {
     const handleUpClick = ()=>{
         let newText = text.toUpperCase()
         setText(newText)
+        props.showAlert("converted text to capital", "success")
     }
 
     const handleSmallClick = () =>{
         let newText = text.toLowerCase()
         setText(newText)
+        props.showAlert("converted text to small case.", "success")
+
     }
 
     const handleClearClick = () =>{
         let newText = " "
         setText(newText)
+        props.showAlert("Your text has been cleared", "success")
+
     }
 
 
@@ -57,7 +62,7 @@ export default function TextForm(props) {
             <p> <b>Your characters: </b> <span>{text.length}</span></p>
             <p ><b>Time to read: </b> {((text.split(" ").length * 0.2)/60).toFixed(2)} minutes</p>
             <h3 style={{color:props.mode==="dark"?"white":"#57518b"}}>Preview : </h3>
-            <p style={{color:props.mode==="dark"?"white":"#57518b"}}>{text.length>0?text:"Enter something in the text box to preview it here"}</p>
+            <p style={{color:props.mode==="dark"?"white":"#57518b"}}>{text}</p>
         </div>
         </>
     )
