@@ -3,16 +3,16 @@ import PropTypes from 'prop-types'
 
 
 export default function NavBar(props) {
-// const [modeText, setModeText]= useState("Enable Dark Mode")
+  // const [modeText, setModeText]= useState("Enable Dark Mode")
 
-// const textMode=()=>{
-//   if(props.mode==="dark"){
-//     setModeText("Enable Light Mode")
-//   }
-//   else{
-//     setModeText("Enable Dark Mode"  )
-//   }
-// }
+  // const textMode=()=>{
+  //   if(props.mode==="dark"){
+  //     setModeText("Enable Light Mode")
+  //   }
+  //   else{
+  //     setModeText("Enable Dark Mode"  )
+  //   }
+  // }
 
   return (
     <div>
@@ -32,16 +32,18 @@ export default function NavBar(props) {
               </li>
 
             </ul>
-            {/* <form className="d-flex" role="search">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-primary" type="submit">Search</button>
-            </form> */}
-            <div className={`form-check form-switch text-${props.mode === 'light' ? 'dark' : 'light'}`}>
-              <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleMode} on />
-              <label className="form-check-label" htmlFor="flexSwitchCheckDefault" color="{props.mode}">Enable dark mode</label>
+
+                <div className={`form-check form-switch mx-3 text-${props.mode === 'light' ? 'dark' : 'light'}`}>
+                  <input className="form-check-input mx-1" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleGreenMode} />
+                  <label className="form-check-label" for="flexSwitchCheckDefault" >Green mode</label>
+                </div>
+
+                <div className={`form-check form-switch text-${props.mode === 'light' ? 'dark' : 'light'}`}>
+                  <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleMode} on />
+                  <label className="form-check-label" htmlFor="flexSwitchCheckDefault" color="{props.mode}">Enable dark mode</label>
+                </div>
             </div>
           </div>
-        </div>
       </nav>
     </div>
   )
@@ -57,4 +59,5 @@ NavBar.propTypes = {
 //this is the function of default props
 NavBar.defaultProps = {
   title: 'Set title here',
-  aboutText: 'About text here'}
+  aboutText: 'About text here'
+}

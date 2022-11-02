@@ -41,6 +41,11 @@ export default function TextForm(props) {
         navigator.clipboard.writtenText(text.value)
     }
 
+    if(text.length===0){
+        document.getElementById("wordLength").textContent=0
+    }
+    
+
 
     return (
         <>
@@ -58,7 +63,7 @@ export default function TextForm(props) {
         </div>
         <div className="container m-2" style={{color:props.mode==="dark"?"white":"#57518b"}}>
             <h2 style={{color:props.mode==="dark"?"white":"#57518b"}}>Your text summary</h2>
-            <p ><b>Your words: </b><span>{text.split(" ").length}</span></p>
+            <p ><b>Your words: </b><span id='wordLength'>{text.split("\n").length}</span></p>
             <p> <b>Your characters: </b> <span>{text.length}</span></p>
             <p ><b>Time to read: </b> {((text.split(" ").length * 0.2)/60).toFixed(2)} minutes</p>
             <h3 style={{color:props.mode==="dark"?"white":"#57518b"}}>Preview : </h3>
