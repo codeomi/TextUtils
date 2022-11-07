@@ -40,3 +40,26 @@
 .blank {
   color: rgb(53, 95, 233);
 }
+
+#about-img{
+  background: url(https://cdn-icons-png.flaticon.com/512/2911/2911230.png);
+}
+
+#about-us {
+  width:40%;
+  height: 100%;
+  padding: 30px;
+  border: black solid 1.5px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+#about-details{
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+#about-heading{
+  font-size: 40px;
+}
+

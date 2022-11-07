@@ -35,10 +35,12 @@ export default function TextForm(props) {
     }
 
     const handleCopyClick=()=>{
+        console.log("copied text");
         let text=  document.getElementById("myBox")
         text.select()
-        text.setSelectionRange(0, 9999)
         navigator.clipboard.writtenText(text.value)
+        document.getSelection().removeAllRanges()
+        props.showAlert("Copied to Clipboard", "Success")
     }
 
     if(text.length===0){
@@ -50,24 +52,25 @@ export default function TextForm(props) {
     return (
         <>
         <div className='container'>
-            <h1 style={{color:props.mode==="dark"?"white":"#57518b"}}>{props.heading}</h1>
+            <h2 className="mb-2" style={{color:props.mode==="dark"?"white":"#57518b"}}>{props.heading}</h2>
             <div className="mb-3">
                 <div className="container">
                 <textarea className="form-control" id="myBox" value= {text}  onChange = {handleOnChange} rows="8" style={{backgroundColor:props.mode==="dark"?"grey":"white", color:props.mode==="dark"?"white":"#57518b"}}></textarea>
                 </div>
-                <div className="btn btn-primary my-3 m-3"  onClick={handleUpClick} >Convert to UpperCase</div>
-                <div className="btn btn-primary my-3" onClick= {handleSmallClick}>Convert to SmallerCase</div>
-                <div className="btn btn-primary my-3 m-3" onClick={handleClearClick}>Clear</div>
-                <div className="btn btn-primary my-3 m-3" onClick={handleCopyClick}>Copy Text</div>
+                <button disabled = {text.length===0} className="btn btn-primary m-1"  onClick={handleUpClick} >Convert to UpperCase</button>
+                <button className="btn btn-primary m-1 " disabled= {text.length===0}onClick= {handleSmallClick}>Convert to LowerCase</button>
+                <button className="btn btn-primary m-1" disabled={text.length===0} onClick={handleCopyClick}>Copy Text</button>
+                <button className="btn btn-primary m-1 " disabled={text.length===0} onClick={handleClearClick}>Clear</button>
             </div>
         </div>
         <div className="container m-2" style={{color:props.mode==="dark"?"white":"#57518b"}}>
             <h2 style={{color:props.mode==="dark"?"white":"#57518b"}}>Your text summary</h2>
-            <p ><b>Your words: </b><span id='wordLength'>{text.split("\n").length}</span></p>
-            <p> <b>Your characters: </b> <span>{text.length}</span></p>
-            <p ><b>Time to read: </b> {((text.split(" ").length * 0.2)/60).toFixed(2)} minutes</p>
+            <p ><b>Your words: </b><span id='wordLength'>{text.split(" ").filter((elements)=>{return elements.length!==0}).length}</span></p>
+            <p> <b>Your characters: </b> <span>{text.split(" ").filter((elements)=>{return elements.length!==0})!==0?text.length:0}</span></p>
+            {/* <p ><b>Time to read: </b> {((text.split(" ").length * 0.2)/60).toFixed(2)} minutes</p> */}
+            <p ><b>Time to read: </b> {0.08 * text.split(" ").filter((elements)=>{return elements.length!==0}).length.toFixed(2)} minutes</p>
             <h3 style={{color:props.mode==="dark"?"white":"#57518b"}}>Preview : </h3>
-            <p style={{color:props.mode==="dark"?"white":"#57518b"}}>{text}</p>
+            <p style={{color:props.mode==="dark"?"white":"#57518b"}}>{text.length>0?text:"Nothing to preview"}</p>
         </div>
         </>
     )

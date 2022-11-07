@@ -7,15 +7,12 @@ import About from './components/About'
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
-} from "react-router-dom";
+  Route
+  } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light")//tells whether dark mode is enabled or not
   const [alert, setAlert] = useState(null)
-  const [lightButton, setlightButton] = useState(true)
-  const [darkButton, setdarkButton] = useState(false)
 
   //this function helps us to show alert msg
   const showAlert = (message, type) => {
@@ -33,15 +30,11 @@ function App() {
       setMode("dark")
       document.body.style.backgroundColor = "#57518b"
       showAlert("Dark mode hs been enabled", "success")
-      setlightButton(false)
-      setdarkButton(true)
     }
     else {
       setMode("light")
       document.body.style.backgroundColor = "white"
       showAlert("Light mode hs been enabled", "success")
-      setlightButton(true)
-      setdarkButton(false)
     }
   }
 
@@ -50,16 +43,11 @@ function App() {
       setMode("dark")
       document.body.style.backgroundColor = "#0c4224"
       showAlert("Green mode hs been enabled", "success")
-      setlightButton(false)
-      setdarkButton(true)
-      document.title = "TextUtils - Dark mode"
     }
     else {
       setMode("light")
       document.body.style.backgroundColor = "white"
       showAlert("Light mode hs been enabled", "success")
-      setlightButton(true)
-      setdarkButton(false)
     }
   }
 
@@ -70,9 +58,9 @@ function App() {
         <Alert alert={alert} />
         <div className="container my-3" >
           <Routes>
-            <Route exact path="/about" element={<About />}>
+            <Route exact path="/about" element={<About mode={mode} onClick={()=>{document.title="TextUtils - About"}}/>}>
             </Route>
-            <Route exact path="/" element={<TextArea showAlert={showAlert} heading="Enter the text to analyse" mode={mode} />
+            <Route exact path="/" element={<TextArea showAlert={showAlert} heading="Try  TextUtils - Word Counter, Character Counter, Remove extra Spaces" mode={mode} onClick={()=>{document.title="TextUtils - Home"}} />
             }>
             </Route>
           </Routes>
