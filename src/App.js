@@ -28,7 +28,7 @@ function App() {
   const toggleMode = () => {
     if (mode === "light") {
       setMode("dark")
-      document.body.style.backgroundColor = "#57518b"
+      document.body.style.backgroundColor = "#220f30"
       showAlert("Dark mode hs been enabled", "success")
     }
     else {
@@ -38,23 +38,11 @@ function App() {
     }
   }
 
-  const toggleGreenMode = () => {
-    if (mode === "light") {
-      setMode("dark")
-      document.body.style.backgroundColor = "#0c4224"
-      showAlert("Green mode hs been enabled", "success")
-    }
-    else {
-      setMode("light")
-      document.body.style.backgroundColor = "white"
-      showAlert("Light mode hs been enabled", "success")
-    }
-  }
 
   return (
     <>
       <Router>
-        <NavBar title="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} toggleGreenMode={toggleGreenMode} />
+        <NavBar title="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
         <div className="container my-3" >
           <Routes>

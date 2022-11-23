@@ -35,10 +35,7 @@ export default function TextForm(props) {
     }
 
     const handleCopyClick=()=>{
-        console.log("copied text");
-        let text=  document.getElementById("myBox")
-        text.select()
-        navigator.clipboard.writtenText(text.value)
+        navigator.clipboard.writtenText(text)
         document.getSelection().removeAllRanges()
         props.showAlert("Copied to Clipboard", "Success")
     }
@@ -55,7 +52,7 @@ export default function TextForm(props) {
             <h2 className="mb-2" style={{color:props.mode==="dark"?"white":"#57518b"}}>{props.heading}</h2>
             <div className="mb-3">
                 <div className="container">
-                <textarea className="form-control" id="myBox" value= {text}  onChange = {handleOnChange} rows="8" style={{backgroundColor:props.mode==="dark"?"grey":"white", color:props.mode==="dark"?"white":"#57518b"}}></textarea>
+                <textarea className="form-control" id="myBox" value= {text}  onChange = {handleOnChange} rows="8" style={{backgroundColor:props.mode==="dark"?"grey":"white", color:props.mode==="dark"?"white":"#57518b"}} name="sitelink"></textarea>
                 </div>
                 <button disabled = {text.length===0} className="btn btn-primary m-1"  onClick={handleUpClick} >Convert to UpperCase</button>
                 <button className="btn btn-primary m-1 " disabled= {text.length===0}onClick= {handleSmallClick}>Convert to LowerCase</button>
@@ -65,7 +62,7 @@ export default function TextForm(props) {
         </div>
         <div className="container m-2" style={{color:props.mode==="dark"?"white":"#57518b"}}>
             <h2 style={{color:props.mode==="dark"?"white":"#57518b"}}>Your text summary</h2>
-            <p ><b>Your words: </b><span id='wordLength'>{text.split(" ").filter((elements)=>{return elements.length!==0}).length}</span></p>
+            <p ><b>Your words: </b><span id='wordLength'>{text.split(/\s+/).filter((elements)=>{return elements.length!==0}).length}</span></p>
             <p> <b>Your characters: </b> <span>{text.split(" ").filter((elements)=>{return elements.length!==0})!==0?text.length:0}</span></p>
             {/* <p ><b>Time to read: </b> {((text.split(" ").length * 0.2)/60).toFixed(2)} minutes</p> */}
             <p ><b>Time to read: </b> {0.08 * text.split(" ").filter((elements)=>{return elements.length!==0}).length.toFixed(2)} minutes</p>
